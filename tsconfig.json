@@ -6,15 +6,11 @@
       "dom.iterable",
       "esnext"
     ],
-    "baseUrl": "./src" /* 절대경로 모듈이 아닌, 모듈이 위치한 기준 디렉토리 */,
+    "baseUrl": ".",
     "paths": {
-      /* baseUrl 기준으로 불러올 모듈의 위치를 재지정하는 엔트리 */ "@/*": ["*"]
+      "@/*": ["src/*"]
     },
-    "typeRoots": [
-      /* 타입정의를 포함할 폴더목록, '/node_modules/@types/' 는 기본 포함됨 */
-      "./node_modules/@types/",
-      "./src/types/"
-    ],
+    "typeRoots": ["./node_modules/@types/", "./src/types/"],
     "allowJs": true /* Javascript 파일 컴파일 허용 */,
     "allowSyntheticDefaultImports": true /* default export가 없는 모듈에서 기본호출 허용 */,
     "declaration": true /* 'type.d.ts' 파일 생성설정 */,
