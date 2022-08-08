@@ -11,7 +11,12 @@ export interface UserInfo {
 const Auth = () => {
   const [userInfo, setUserInfo] = useState<UserInfo>({ id: "", password: "" });
 
-  console.log(userInfo);
+  const handleSubmitDisabled = () => {
+    let idCheck = userInfo.id.includes("@" || ".");
+    let pwCheck = 8 <= userInfo.password.length;
+    let valid = !!pwCheck && !!idCheck;
+    return !valid;
+  };
 
   return (
     <Layout>
@@ -22,7 +27,10 @@ const Auth = () => {
         <Input setUserInfo={setUserInfo} type="password">
           비밀번호
         </Input>
-        <Btn>로그인</Btn>
+        <BtnWrapper>
+          <Btn disabled={handleSubmitDisabled()}>회원가입</Btn>
+          <Btn disabled={handleSubmitDisabled()}>로그인</Btn>
+        </BtnWrapper>
       </Form>
     </Layout>
   );
@@ -48,11 +56,16 @@ const Form = styled.form`
   height: 50vh;
 `;
 
+const BtnWrapper = styled.div`
+  display: flex;
+`;
+
 const Btn = styled.button`
   border-radius: 10px;
-  margin-top: 10px;
+  margin: 10px 5px;
   padding: 5px 10px;
   font-size: 16px;
-  background-color: ${theme.color.main_point};
   color: white;
+  background-color: ${({ disabled }) =>
+    disabled ? `${theme.color.middle_gray}` : `${theme.color.main_point}`};
 `;
