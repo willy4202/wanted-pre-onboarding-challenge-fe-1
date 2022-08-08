@@ -1,9 +1,9 @@
 import theme from "../styles/theme";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import Input from "./Input";
-import { useNavigate } from "react-router-dom";
+import { Router, useNavigate } from "react-router-dom";
 
 export interface UserInfo {
   id: string;
@@ -22,6 +22,17 @@ const Auth = () => {
     let valid = !!pwCheck && !!idCheck;
     return !valid;
   };
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      alert("자동 로그인 ");
+      navigate("/main");
+    } else {
+      return;
+    }
+  });
 
   const createUserData = async () => {
     try {
