@@ -1,7 +1,18 @@
-import React from "react";
+import { UserInfo } from "../Auth/index";
+import React, { Dispatch, ReactElement, SetStateAction } from "react";
 import styled from "styled-components";
 
-const Input = ({ setUserInfo, type, children }) => {
+interface InputInterfaceProps {
+  children: string;
+  type: string;
+  setUserInfo: Dispatch<SetStateAction<UserInfo>>;
+}
+
+interface InputParams {
+  (param: InputInterfaceProps): ReactElement;
+}
+
+const Input: InputParams = ({ setUserInfo, type, children }) => {
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>, type: string) {
     const value = e.target.value;
     setUserInfo((prev) => ({ ...prev, [type]: value }));

@@ -4,12 +4,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import Input from "./Input";
 
+export interface UserInfo {
+  id: string;
+  password: string;
+}
 const Auth = () => {
-  interface UserInfo {
-    id: string;
-    password: string;
-  }
-
   const [userInfo, setUserInfo] = useState<UserInfo>({ id: "", password: "" });
 
   console.log(userInfo);
