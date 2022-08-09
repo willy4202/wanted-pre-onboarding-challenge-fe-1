@@ -1,7 +1,6 @@
 import { UserInfo } from "../Auth/index";
 import React, { Dispatch, ReactElement, SetStateAction } from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
 
 interface InputInterfaceProps {
   children: string;

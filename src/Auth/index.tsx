@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import Input from "./Input";
-import { Router, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export interface UserInfo {
   id: string;
