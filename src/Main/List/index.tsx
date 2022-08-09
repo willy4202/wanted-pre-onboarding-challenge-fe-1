@@ -1,9 +1,43 @@
 import theme from "../../styles/theme";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+const SERVER = "http://localhost:8080";
+
 const List = () => {
-  return <Layout>List</Layout>;
+  const [toDoData, setToDoDAta] = useState([]);
+
+  useEffect(() => {
+    fetch(`${SERVER}/todos`, {
+      method: "GET",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setToDoDAta(data.data));
+  }, []);
+
+  const handleList = (item) => {
+    console.log(item);
+  };
+
+  return (
+    <Layout>
+      <ul>
+        <>
+          {toDoData.map((item) => (
+            <li key={item.id}>
+              <button onClick={() => handleList(item.content)}>
+                {item.title}
+              </button>
+            </li>
+          ))}
+        </>
+      </ul>
+    </Layout>
+  );
 };
 
 export default List;
